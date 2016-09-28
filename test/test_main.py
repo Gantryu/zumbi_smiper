@@ -57,14 +57,13 @@ zumbi2.def_current_sprite_sequence('walk')
 
 
 def testProfundidade():
-
     gs.add_scene_object(gun)
     gs.add_scene_object(zumbi)
     gs.add_scene_object(zumbi2)
 
 
+# todo teste de dano 
 def testDanoSprite():
-
     gs.add_scene_object(gun)
     gs.add_scene_object(zumbi)
     gs.add_scene_object(zumbi1)
