@@ -4,13 +4,13 @@ import socket
 
 
 class TestServer(unittest.TestCase):
-    pass
-    # def testStartServer(self):
-    #     server = Server()
-    #     test = server.start_server()
-    #     server.close_server()
-    #     self.assertEqual(test, True, " Não foi possivel iniciar o servidor")
-    #
+
+    def testStartServer(self):
+        server = Server()
+        server.start_server()
+        self.assertEqual(server.running, True, " Servidor funcionando")
+        server.close_server()
+
     # def testWaitNewClient(self):
     #     server = Server()
     #     server.start_server()

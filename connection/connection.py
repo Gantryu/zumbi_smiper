@@ -11,8 +11,6 @@ from helper.connection_helper import *
 class Server(object):
     """ Classe servidora, acesso remoto, gerenciar clientes"""
 
-    # Numero maximo de clientes que poderão se conectar
-    MAX_CONNECTIONS = 4
 
     def __init__(self, host='', port=5000):
         """
@@ -25,44 +23,32 @@ class Server(object):
         self.host = host
         self.port = port
         self.running = False
+        self.serv_thread = None
 
-
+    # noinspection PyBroadException
     def start_server(self, port=5000):
         self.port = port
         """
-        :param port: inteiro porta, sendo a porta na qual ira iniciar a escuta do servidor padrao = 7000
+        :param port: inteiro porta, sendo a porta na qual ira iniciar a escuta do servidor padrao = 5000
         :return: True se conectou ou False se não conseguiu conectar
         """
         try:
             self.addr = (self.host, self.port)  # VARIAVEL CONTENDO OS VALORES DO IP E PORTA
-            self.serv_socket = socket.socket(socket.AF_INET,
-                                             socket.SOCK_DGRAM)  # Usando um protocolo udp
-            self.serv_socket.bind(self.addr)  # Define para qual IP e porta o servidor deve aguardar a conexão
-        except OSError:
+            self.serv_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  # Usando um protocolo udp
+            self.serv_socket.bind(self.addr)  # Define para qual IP e porta o servidor deve aguardar
+        except :
+            print("falha ao iniciar servidor")
             return False
-            # TODO tratar excessão, pode ser lançado ex: quando porta ja estiver em uso
         if self.serv_socket != None:
             self.running = True
-            serv_thread = ServerThread(self)
-            serv_thread.start()
+            self.serv_thread = ServerThread(self)
+            self.serv_thread.start()
+
 
 
 
     def recover_last_message(self):
         return self.rec_messages.pop(-1)
-
-
-    def get_host(self):
-        """
-        :return: retorna o host(ip) do servidor
-        """
-        return self.host
-
-    def get_port(self):
-        """
-        :return: retorna a porta estabelecida para conexao do objeto servidor
-        """
-        return self.port
 
 
     def close_server(self):
@@ -147,6 +133,5 @@ class MacInfo(object):
         import netifaces as ni
         return ni.interfaces()[2:]
 
-server = Server('localhost')
-server.start_server()
+
 

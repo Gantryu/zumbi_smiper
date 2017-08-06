@@ -3,7 +3,7 @@ from main.img_const import *
 
 
 class ZombieFactory():
-    def __init__(self, dimension = None):
+    def __init__(self, dimension=None):
         self.dimension = dimension
 
 

@@ -28,4 +28,4 @@ class TestQrCodeHelper(unittest.TestCase):
     def testGenerateQrCode(self):
         img = generate_qrcode("teste")
         self.assertIsNotNone(img)
-        #img.show() # descomentar para abrir a imagem
+        img.show() # descomentar para abrir a imagem

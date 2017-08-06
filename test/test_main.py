@@ -20,7 +20,7 @@ gs = GameScene(BG_02, BG_SOUND, pygame)
 
 gs.load_bg_img()
 gs.load_bg_sound()
-gun = Gun(gs, load_img('../_img/aim1.png'), load_img('../_img/aim2.png'), load_sound('../_audio/m19.ogg'),
+gun = Gun(gs, load_img('../_img/aim1.png'), load_img('../_img/aim2.png'), load_sound('../_audio/rifle0.ogg'),
           no_ammo_sound=load_sound('../_audio/empty_gun.ogg'), speed=100)
 
 gun.set_shoot_volume(0.5)
@@ -29,12 +29,13 @@ gun.set_max_ammo(1000)
 gun.recharge_ammo(1000)
 
 z = ZombieFactory((158, 158))
+# z = ZombieFactory((158, 320))
 zumbi_walk = z.g_zombie_walk()
 zumbi_die = z.g_zombie_die()
 zumbi_headshot = z.g_zombie_headshot()
 
 zumbi = Zombie(gs, load_sound('../_audio/sound_zombie01.ogg'), load_img(path_img('0001.png'), (158, 158)),
-               pos=(2000, 550))
+               pos=(800, 550))
 zumbi.set_resistance(0, 3, 8)
 zumbi.add_sprite_sequence('walk', zumbi_walk)
 zumbi.add_sprite_sequence('die', zumbi_die)
@@ -42,7 +43,7 @@ zumbi.add_sprite_sequence('headshot', zumbi_headshot)
 zumbi.def_current_sprite_sequence('walk')
 
 zumbi1 = Zombie(gs, load_sound('../_audio/sound_zombie01.ogg'), load_img(path_img('0001.png'), (158, 158)),
-                pos=(2000, 600), speed=150)
+                pos=(1200, 600), speed=150)
 zumbi1.set_resistance(0, 5, 8)
 zumbi1.add_sprite_sequence('walk', zumbi_walk)
 zumbi1.add_sprite_sequence('die', zumbi_die)
@@ -50,7 +51,7 @@ zumbi1.add_sprite_sequence('headshot', zumbi_headshot)
 zumbi1.def_current_sprite_sequence('walk')
 
 zumbi2 = Zombie(gs, load_sound('../_audio/sound_zombie01.ogg'), load_img(path_img('0001.png'), (158, 158)),
-                pos=(2000, 530))
+                pos=(1000, 530))
 zumbi2.set_resistance(0, 0, 0)
 zumbi2.add_sprite_sequence('walk', zumbi_walk)
 zumbi2.add_sprite_sequence('die', zumbi_die)
